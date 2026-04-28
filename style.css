@@ -1,0 +1,211 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #0d0221;
+  --pink: #ff9933;
+  --purple: #ffffff;
+  --teal: #138808;
+  --yellow: #ffbe0b;
+  --font: "Press Start 2P", monospace;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: var(--font);
+  background: var(--bg);
+  color: #fff;
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transition: opacity 0.8s;
+}
+#loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-grid {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--pink);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loader-text {
+  position: absolute;
+  margin-top: 100px;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  color: var(--pink);
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+@keyframes pulse-text {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#synth-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#hud {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem;
+  z-index: 10;
+}
+.hud-speed,
+.hud-miles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 0, 110, 0.1);
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+.hud-speed span:first-child,
+.hud-miles span:first-child {
+  font-size: 0.4rem;
+  letter-spacing: 3px;
+  color: var(--pink);
+}
+.hud-speed span:nth-child(2),
+.hud-miles span:nth-child(2) {
+  font-size: 1.2rem;
+  color: var(--yellow);
+}
+.hud-speed span:last-child {
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#controls-bar {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+#controls-bar button {
+  background: rgba(255, 0, 110, 0.1);
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 0.45rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+}
+#controls-bar button:hover {
+  background: rgba(255, 0, 110, 0.25);
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+}
+#controls-bar button.active {
+  background: rgba(255, 0, 110, 0.4);
+  box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
+}
+
+#hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.35rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+#audio-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: rgba(255, 0, 110, 0.1);
+  border: 1px solid rgba(255, 0, 110, 0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  animation: pulse-audio 2s infinite;
+}
+@keyframes pulse-audio {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.github-badge {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+.github-badge a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  #hud {
+    gap: 1rem;
+  }
+  #hint {
+    font-size: 0.3rem;
+  }
+}
